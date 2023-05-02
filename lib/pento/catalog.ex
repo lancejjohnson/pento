@@ -101,4 +101,9 @@ defmodule Pento.Catalog do
   def change_product(%Product{} = product, attrs \\ %{}) do
     Product.changeset(product, attrs)
   end
+
+  def markdown_product(%Product{unit_price: current_price} = product, markdown)
+      when is_float(current_price) do
+    Product.change_unit_price(product, %{unit_price: current_price - markdown})
+  end
 end
