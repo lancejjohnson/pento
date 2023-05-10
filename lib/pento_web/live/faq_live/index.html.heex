@@ -13,7 +13,6 @@
   row_click={fn {_id, faq} -> JS.navigate(~p"/faqs/#{faq}") end}
 >
   <:col :let={{_id, faq}} label="Question"><%= faq.question %></:col>
-  <:col :let={{_id, faq}} label="Answer"><%= faq.answer %></:col>
   <:col :let={{_id, faq}} label="Vote count"><%= faq.vote_count %></:col>
   <:action :let={{_id, faq}}>
     <div class="sr-only">
