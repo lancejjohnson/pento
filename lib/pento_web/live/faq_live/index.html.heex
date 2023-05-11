@@ -12,8 +12,8 @@
   rows={@streams.faqs}
   row_click={fn {_id, faq} -> JS.navigate(~p"/faqs/#{faq}") end}
 >
-  <:col :let={{_id, _faq}} label="">
-    <.link phx-click="upvote" phx-value-id="1">
+  <:col :let={{_id, faq}} label="">
+    <.link phx-click="upvote" phx-value-id={faq.id}>
       <.icon name="hero-arrow-small-up" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
     </.link>
   </:col>
