@@ -13,7 +13,9 @@
   row_click={fn {_id, faq} -> JS.navigate(~p"/faqs/#{faq}") end}
 >
   <:col :let={{_id, _faq}} label="">
-  <.button phx-click="upvote" phx-value-id="1">Upvote</.button>
+    <.link phx-click="upvote" phx-value-id="1">
+      <.icon name="hero-arrow-small-up" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
+    </.link>
   </:col>
   <:col :let={{_id, faq}} label="Question"><%= faq.question %></:col>
   <:col :let={{_id, faq}} label="Vote count"><%= faq.vote_count %></:col>
