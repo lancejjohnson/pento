@@ -16,6 +16,9 @@
     <.link phx-click="upvote" phx-value-id={faq.id}>
       <.icon name="hero-arrow-small-up" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
     </.link>
+    <.link phx-click="downvote" phx-value-id={faq.id}>
+      <.icon name="hero-arrow-small-down" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
+    </.link>
   </:col>
   <:col :let={{_id, faq}} label="Question"><%= faq.question %></:col>
   <:col :let={{_id, faq}} label="Vote count"><%= faq.vote_count %></:col>

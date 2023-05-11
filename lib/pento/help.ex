@@ -106,10 +106,19 @@ defmodule Pento.Help do
     upvote_faq(faq, current_vote_count || 0)
   end
 
-
   def upvote_faq(%FAQ{} = faq, current_vote_count) do
     faq
     |> FAQ.vote_changeset(%{vote_count: current_vote_count + 1})
+    |> Repo.update()
+  end
+
+  def downvote_faq(%FAQ{vote_count: current_vote_count} = faq) do
+    downvote_faq(faq, current_vote_count || 0)
+  end
+
+  def downvote_faq(%FAQ{} = faq, current_vote_count) do
+    faq
+    |> FAQ.vote_changeset(%{vote_count: current_vote_count - 1})
     |> Repo.update()
   end
 end

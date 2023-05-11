@@ -51,4 +51,11 @@ defmodule PentoWeb.FAQLive.Index do
     {:ok, updated_faq} = Help.upvote_faq(faq)
     {:noreply, stream_insert(socket, :faqs, updated_faq)}
   end
+
+  @impl true
+  def handle_event("downvote", %{"id" => id}, socket) do
+    faq = Help.get_faq!(id)
+    {:ok, updated_faq} = Help.downvote_faq(faq)
+    {:noreply, stream_insert(socket, :faqs, updated_faq)}
+  end
 end
