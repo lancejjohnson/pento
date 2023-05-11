@@ -16,4 +16,8 @@ defmodule Pento.Help.FAQ do
     |> cast(attrs, [:question, :answer])
     |> validate_required([:question])
   end
+
+  def vote_changeset(faq, attrs) do
+    faq |> cast(attrs, [:vote_count])
+  end
 end
