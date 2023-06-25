@@ -63,8 +63,6 @@ defmodule PentoWeb.ProductLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"product" => product_params}, socket) do
-    IO.inspect(product_params, label: "handle_event/validate")
-
     changeset =
       socket.assigns.product
       |> Catalog.change_product(product_params)
@@ -74,8 +72,6 @@ defmodule PentoWeb.ProductLive.FormComponent do
   end
 
   def handle_event("save", %{"product" => product_params}, socket) do
-    IO.inspect(product_params, label: "handle_event/save")
-
     save_product(socket, socket.assigns.action, product_params)
   end
 
@@ -98,7 +94,6 @@ defmodule PentoWeb.ProductLive.FormComponent do
 
   defp save_product(socket, :new, params) do
     product_params = params_with_image(socket, params)
-    IO.inspect(product_params, label: "save_product")
 
     case Catalog.create_product(product_params) do
       {:ok, product} ->
