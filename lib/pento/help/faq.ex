@@ -13,7 +13,7 @@ defmodule Pento.Help.FAQ do
   @doc false
   def changeset(faq, attrs) do
     faq
-    |> cast(attrs, [:question, :answer])
+    |> cast(attrs, [:question, :answer, :vote_count])
     |> validate_required([:question])
   end
 

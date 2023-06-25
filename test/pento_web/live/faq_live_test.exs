@@ -5,13 +5,19 @@ defmodule PentoWeb.FAQLiveTest do
   import Pento.HelpFixtures
 
   @create_attrs %{answer: "some answer", question: "some question", vote_count: 42}
-  @update_attrs %{answer: "some updated answer", question: "some updated question", vote_count: 43}
+  @update_attrs %{
+    answer: "some updated answer",
+    question: "some updated question",
+    vote_count: 43
+  }
   @invalid_attrs %{answer: nil, question: nil, vote_count: nil}
 
   defp create_faq(_) do
     faq = faq_fixture()
     %{faq: faq}
   end
+
+  setup [:register_and_log_in_user]
 
   describe "Index" do
     setup [:create_faq]
