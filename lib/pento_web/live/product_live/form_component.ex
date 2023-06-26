@@ -36,6 +36,9 @@ defmodule PentoWeb.ProductLive.FormComponent do
         <%= for err <- upload_errors(@uploads.image, image) do %>
           <.error><%= err %></.error>
         <% end %>
+        <.button class="text-red-600 bg-red-100" phx-click="cancel-upload" phx-value-ref="<%= entry.ref %>">
+          Cancel
+        </.button>
         <div class="mt-4">
           <.live_img_preview entry={image} width="60" />
         </div>
@@ -71,8 +74,14 @@ defmodule PentoWeb.ProductLive.FormComponent do
     {:noreply, assign_form(socket, changeset)}
   end
 
+  @impl true
   def handle_event("save", %{"product" => product_params}, socket) do
     save_product(socket, socket.assigns.action, product_params)
+  end
+
+  @impl true
+  def handle_event("cancel-upload", %{"ref" => ref}, socket) do
+    {:noreply, cancel_upload(socket, :image_upload, ref)}
   end
 
   defp save_product(socket, :edit, params) do
@@ -107,6 +116,10 @@ defmodule PentoWeb.ProductLive.FormComponent do
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign_form(socket, changeset)}
     end
+  end
+
+  defp cancel_upload(socket, :image_upload, ref) do
+    # TODO(lancejjohnson): I need to come back to this. Don't want to deal with it now.
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do

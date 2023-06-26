@@ -25,6 +25,7 @@ defmodule Pento.Catalog.Product do
     product
     |> cast(attrs, [:unit_price])
     |> validate_required([:unit_price])
+    # TODO: This is wrong! This function should either be named in a way that implies less than or it should not validate that the new price is less than the original price
     |> validate_number(:unit_price, less_than: original_unit_price)
   end
 end
