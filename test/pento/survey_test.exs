@@ -65,7 +65,7 @@ defmodule Pento.SurveyTest do
     test "get_demographics_by_user/1 returns demographics for a user" do
       user = user_fixture()
       user_id = user.id
-      demographics_fixture(user_id: user_id)
+      demographics_fixture(%{user_id: user_id})
 
       %Demographics{user_id: ^user_id} = Survey.get_demographics_by_user(user)
     end

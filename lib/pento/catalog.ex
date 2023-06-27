@@ -106,4 +106,10 @@ defmodule Pento.Catalog do
       when is_float(current_price) do
     Product.change_unit_price(product, %{unit_price: current_price - markdown})
   end
+
+  def list_products_with_user_rating(user) do
+    user
+    |> Product.Query.with_user_ratings()
+    |> Repo.all()
+  end
 end
