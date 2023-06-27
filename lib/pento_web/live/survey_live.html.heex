@@ -1,11 +1,16 @@
 <section>
   <Component.hero content="Survey">
-    Please fill out our survey.
+    <Title.title message="We'd love to hear from you">
+      Please fill out our survey.
+    </Title.title>
   </Component.hero>
 </section>
 
 <%= if @demographics do %>
   <DemographicsLive.Show.details demographics={@demographics} />
+  <Title.title>
+    Here's the deets
+  </Title.title>
 <% else %>
   <h2>Demographics form coming soon!</h2>
 <% end %>

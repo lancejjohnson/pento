@@ -1,8 +1,9 @@
 defmodule PentoWeb.SurveyLive do
   use PentoWeb, :live_view
 
-  alias PentoWeb.SurveyLive.Component
   alias PentoWeb.DemographicsLive
+  alias PentoWeb.SurveyLive.Component
+  alias PentoWeb.Title
   alias Pento.Survey
 
   def mount(_params, _session, socket) do
