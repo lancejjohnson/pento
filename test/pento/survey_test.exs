@@ -61,6 +61,14 @@ defmodule Pento.SurveyTest do
       demographics = demographics_fixture()
       assert %Ecto.Changeset{} = Survey.change_demographics(demographics)
     end
+
+    test "get_demographics_by_user/1 returns demographics for a user" do
+      user = user_fixture()
+      user_id = user.id
+      demographics_fixture(user_id: user_id)
+
+      %Demographics{user_id: ^user_id} = Survey.get_demographics_by_user(user)
+    end
   end
 
   describe "ratings" do
