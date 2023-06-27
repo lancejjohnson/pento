@@ -3,3 +3,9 @@
     Please fill out our survey.
   </Component.hero>
 </section>
+
+<%= if @demographics do %>
+  <DemographicsLive.Show.details demographics={@demographics} />
+<% else %>
+  <h2>Demographics form coming soon!</h2>
+<% end %>
