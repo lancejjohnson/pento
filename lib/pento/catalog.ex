@@ -107,6 +107,15 @@ defmodule Pento.Catalog do
     Product.change_unit_price(product, %{unit_price: current_price - markdown})
   end
 
+  @doc """
+  Get all products. If the user has rated the product,
+  preload the user's rating of the product.
+
+  NOTE: I think this is a poorly named function. It implies
+  that is getting only those products that the user has
+  rated. But that's not the case. It gets all products
+  and only gets ratings by the provided user.
+  """
   def list_products_with_user_rating(user) do
     user
     |> Product.Query.with_user_ratings()

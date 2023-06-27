@@ -75,26 +75,27 @@ defmodule Pento.CatalogTest do
       assert %Ecto.Changeset{} = Catalog.change_product(product)
     end
 
-    test "list_products_with_user_rating/1 returns products with ratings preloaded" do
-      user = user_fixture()
-      user_id = user.id
-      other_user = user_fixture()
+    test "list_products_with_user_rating/1 returns all products preloading any ratings by the given user" do
+      %{id: user_id} = user = user_fixture()
+      %{id: otheruser_id} = user_fixture()
 
+      # Create products, some of which are rated by the user
       for n <- 0..3 do
         product = product_fixture()
-        rating_fixture(%{user_id: user.id, product_id: product.id})
+        # all of the products have been rated by another user
+        rating_fixture(%{user_id: otheruser_id, product_id: product.id})
 
-        if rem(n, 2) == 0 do
-          rating_fixture(%{user_id: other_user.id, product_id: product.id})
+        if n in [1, 2] do
+          # Some of the products have been rated by user
+          rating_fixture(%{user_id: user_id, product_id: product.id})
         end
       end
 
       products = Catalog.list_products_with_user_rating(user)
 
       assert Enum.count(products) == 4
-
-      for product <- products do
-        assert %Rating{user_id: ^user_id} = product.ratings |> List.first()
+      for product <- products, rating <- product.ratings do
+        assert %Rating{user_id: ^user_id} = rating
       end
     end
   end
