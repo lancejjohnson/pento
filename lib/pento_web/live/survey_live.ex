@@ -5,6 +5,7 @@ defmodule PentoWeb.SurveyLive do
   alias PentoWeb.SurveyLive.Component
   alias PentoWeb.Title
   alias Pento.Survey
+  alias PentoWeb.DemographicsLive
 
   def mount(_params, _session, socket) do
     {:ok, assign_demographics(socket)}
