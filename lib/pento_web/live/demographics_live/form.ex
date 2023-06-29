@@ -24,6 +24,15 @@ defmodule PentoWeb.DemographicsLive.Form do
   defp save_demographics(socket, params) do
     case Survey.create_demographics(params) do
       {:ok, demographics} ->
+        # When we successfully save a demographics, we want to inform the
+        # parent process it happened so it can decide what to do. The Form
+        # shouldn't care about that responsibility. It just handles the Form
+        # not what happens after the form.
+        # The child is running the same process as the parent. So it's PID
+        # is self()
+        send(self(), {:created_demographics, demographics})
+        # `send` needs to be handled by a handle_info callback in the parent.
+        # the parent is Demographics.Show
         socket
 
       {:error, changeset} ->

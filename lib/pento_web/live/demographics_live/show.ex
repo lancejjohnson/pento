@@ -2,6 +2,8 @@ defmodule PentoWeb.DemographicsLive.Show do
   use Phoenix.Component
   use Phoenix.HTML
 
+  import Phoenix.LiveView, only: [put_flash: 3]
+
   alias Pento.Survey.Demographics
   alias PentoWeb.CoreComponents
 
